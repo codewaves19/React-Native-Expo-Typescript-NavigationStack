@@ -13,15 +13,9 @@ const Stack = createNativeStackNavigator();
 function StackNav() {
     return (
         <Stack.Navigator screenOptions={{
-            headerTintColor: "black"
+            headerTintColor: "black",
         }}>
-            <Stack.Screen name="Home" component={HomeScreen} options={{
-                statusBarColor: "cyan",
-                title: "Welcome to All!!!",
-                headerStyle: {
-                    backgroundColor: "orange"
-                },
-            }} />
+            <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Notifications" component={NotificationsScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
@@ -34,10 +28,7 @@ const DrawerNav = () => {
 
     return (
         <Drawer.Navigator>
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={ProfileScreen} />
-            <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-            <Drawer.Screen name="Settings" component={SettingsScreen} />
+            <Drawer.Screen name="Welcome" component={StackNav} />
         </Drawer.Navigator>
     )
 }
