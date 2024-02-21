@@ -1,19 +1,38 @@
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Entypo';
+import DrawerNavigator from './DrawerNavigator';
 
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import NotificationsScreen from './src/screens/NotificationsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
-
-const Stack = createNativeStackNavigator();
+import DrawerContent from './src/screens/DrawerContent';
 
 function StackNav() {
+    const navigation = useNavigation();
+    const Stack = createNativeStackNavigator();
+
     return (
         <Stack.Navigator screenOptions={{
-            headerTintColor: "black",
+            statusBarColor: '#0163d2',
+            headerStyle: {
+                backgroundColor: '#0163d2'
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: 'center',
+            headerLeft: () => {
+                return(
+                    <Icon
+                        name="menu"
+                        onPress={()=>navigation.dispatch(DrawerActions.openDrawer)}
+                        size={30}
+                        color="#fff"
+                    />
+                );
+            },
         }}>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
@@ -27,7 +46,11 @@ const DrawerNav = () => {
     const Drawer = createDrawerNavigator();
 
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator
+            drawerContent={props => <DrawerContent {...props} />}
+            screenOptions={{
+                headerShown: false,
+            }}>
             <Drawer.Screen name="Welcome" component={StackNav} />
         </Drawer.Navigator>
     )
