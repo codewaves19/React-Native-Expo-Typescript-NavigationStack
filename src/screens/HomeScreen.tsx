@@ -2,16 +2,16 @@ import { Button, View, StyleSheet, Text } from 'react-native';
 
 function HomeScreen({ navigation }: any) {
     return (
-      <View style={styles.viewStyle}>
-        <Text style={styles.headingStyle}>React Navigation</Text>
-        <Text style={styles.textStyle}>This is Home Screen</Text>
-        <Button
-          title="Go to Profile"
-          onPress={() => navigation.navigate('Profile')}
-        />
-      </View>
+        <View style={styles.viewStyle}>
+            <Text style={styles.headingStyle}>React Navigation</Text>
+            <Text style={styles.textStyle}>This is Home Screen</Text>
+            <Button
+                title="Go to Profile"
+                onPress={() => navigation.navigate('Profile')}
+            />
+        </View>
     );
-  }
+}
 
 const styles = StyleSheet.create({
     viewStyle: {

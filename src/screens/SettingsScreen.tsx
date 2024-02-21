@@ -3,10 +3,10 @@ import { Button, View, StyleSheet, Text } from 'react-native';
 function SettingsScreen({ navigation }: any) {
     return (
         <View style={styles.viewStyle}>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      </View>
+            <Text>This is Settings Screen</Text>
+        </View>
     );
-  }
+}
 
 const styles = StyleSheet.create({
     viewStyle: {
