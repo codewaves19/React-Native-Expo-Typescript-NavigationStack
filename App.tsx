@@ -3,7 +3,7 @@ import { NavigationContainer, useNavigation, DrawerActions } from '@react-naviga
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Entypo';
-import DrawerNavigator from './DrawerNavigator';
+//import DrawerNavigator from './DrawerNavigator';
 
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
@@ -23,18 +23,20 @@ function StackNav() {
             },
             headerTintColor: "#fff",
             headerTitleAlign: 'center',
-            headerLeft: () => {
-                return(
-                    <Icon
-                        name="menu"
-                        onPress={()=>navigation.dispatch(DrawerActions.openDrawer)}
-                        size={30}
-                        color="#fff"
-                    />
-                );
-            },
+
         }}>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} options={{
+                headerLeft: () => {
+                    return (
+                        <Icon
+                            name="menu"
+                            onPress={() => navigation.dispatch(DrawerActions.openDrawer)}
+                            size={30}
+                            color="#fff"
+                        />
+                    );
+                },
+            }} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Notifications" component={NotificationsScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />

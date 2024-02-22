@@ -1,8 +1,44 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Avatar, Title } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+const DrawerList = [
+    {icon: 'home-outline', label: 'Home', navigateTo: 'Home'},
+    {icon: 'account-multiple', label: 'Profile', navigateTo: 'Profile'},
+    {icon: 'bell', label: 'Notifications', navigateTo: 'Notifications'},
+    {icon: 'wheel', label: 'Settings', navigateTo: 'Settings'},
+  ];
+
+  const DrawerLayout = ({icon, label, navigateTo}: any) => {
+    const navigation = useNavigation();
+    // console.log(userData);
+    return (
+      <DrawerItem
+        icon={({color, size}) => <Icon name={icon} color={color} size={size} />}
+        label={label}
+        onPress={() => {
+          navigation.navigate(navigateTo);
+        }}
+      />
+    );
+  };
+
+  const DrawerItems = (props: any) => {
+    return DrawerList.map((el, i) => {
+      return (
+        <DrawerLayout
+          key={i}
+          icon={el.icon}
+          label={el.label}
+          navigateTo={el.navigateTo}
+        />
+      );
+    });
+  };
 
 function DrawerContent({props}: any) {
   return (
@@ -28,9 +64,19 @@ function DrawerContent({props}: any) {
                         </View>
                     </View>
                 </TouchableOpacity>
+                <View style={styles.drawerSection}>
+                    <DrawerItems />
+                </View>
             </View>
         </DrawerContentScrollView>
-      
+        <View style={styles.bottomDrawerSection}>
+            <DrawerItem
+                icon={({color, size}: any)=> (
+                    <Icon name="exit-to-app" color={color} size={size} />
+                )}
+                label="Sign Out"
+            />
+        </View>
     </View>
   )
 }
